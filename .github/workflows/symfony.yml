@@ -39,3 +39,16 @@ jobs:
       run: composer install -d api -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: api/bin/phpunit --configuration api/phpunit.xml.dist
+    - name: Make code coverage badge
+      uses: timkrase/phpunit-coverage-badge@v1.2.1
+      with:
+        coverage_badge_path: output/coverage.svg
+        push_badge: false
+    - name: Git push to image-data branch
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        publish_dir: ./output
+        publish_branch: image-data
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
