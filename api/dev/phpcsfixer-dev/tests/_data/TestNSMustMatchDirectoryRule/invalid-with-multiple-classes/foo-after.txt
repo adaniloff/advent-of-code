@@ -1,0 +1,56 @@
+<?php
+
+namespace Dev\PhpCsFixer\Tests\_data\TestNSMustMatchDirectoryRule\Some\Path;
+
+use App\Arithmetic\Counter;
+use PhpUnit\Framework\TestCase;
+
+class AddTest extends TestCase
+{
+    public static function setUpBeforeClass(): void
+    {
+        self::markTestIncomplete('Tests namespace must follow their directory path.');
+    }
+
+    /**
+     * @covers ::getResult
+     * @covers ::add
+     */
+    protected function dummyTest(): void
+    {
+        $newBornCount = 5;
+        $popBaseSize = 10;
+        $population = new Population($popBaseSize, 'fr');
+        $expected = (new Add($popBaseSize, $newBornCount))->getResult();
+
+        $population->add($newBornCount);
+
+        $this->assertEquals($popBaseSize, $population->getBaseSize());
+        $this->assertEquals($expected, $population->getOvrAllSize());
+    }
+}
+
+Class Population
+{
+    public function __construct(private int $baseSize, private string $country)
+    {
+        $this->counter = new Counter();
+    }
+
+    public function add(int $nbNewBorn): self
+    {
+        $this->counter->add($nbNewBorn);
+
+        return $this;
+    }
+
+    public function getOvrAllSize(): int
+    {
+        return (new Add($this->counter->getResult(), $this->baseSize))->getResult();
+    }
+
+    public function getBaseSize(): int
+    {
+        return $this->baseSize;
+    }
+}

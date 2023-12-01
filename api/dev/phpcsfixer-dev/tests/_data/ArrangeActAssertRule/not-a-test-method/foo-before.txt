@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Tests;
+
+class FooTest
+{
+    public function setUp(): self
+    {
+        $boolean = true && $e = new \RuntimeException();
+
+        if ($e) {
+            throw ($e);
+        }
+
+        $e = 'no exception';
+        dump($e);
+
+        return $boolean;
+    }
+}

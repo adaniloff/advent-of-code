@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        public: true
+        autowire: true
+        autoconfigure: true
+    
+    printer.logger.decorator:
+        class: Package\AyruuKit\App\Application\Printer\PrintableLoggerDecorator
+
+    printer.logger.adapter:
+        class: Package\AyruuKit\App\Application\Printer\PrintableLoggerAdapter

@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Dev\PhpCsFixer\Tests\_data\ApplyMultipleRules\MismatchBtwDirectoryAndCoveredClass;
+
+use Dev\PhpCsFixer\App\Foo\Bar\FooBar;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * @group internal
+ * @coversDefaultClass \Dev\PhpCsFixer\App\Foo\Bar\FooBar
+ *
+ * @internal
+ */
+final class DummyTest extends TestCase
+{
+    public function testDummy(): void
+    {
+        $fooBar = new FooBar();
+        $this->assertInstanceOf(FooBar::class, $fooBar);
+    }
+}

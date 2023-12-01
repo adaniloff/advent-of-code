@@ -1,0 +1,8 @@
+<?php
+
+namespace App\Tests\Foo\Bar;
+
+Class FooBarTest
+{
+    use Foo;
+}

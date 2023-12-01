@@ -1,0 +1,13 @@
+imports:
+    - { resource: ./services.yaml }
+    - { resource: ../dev/foundry-dev/config/services_test.yaml }
+
+parameters:
+
+services:
+    _defaults:
+        public: true
+        autowire: true
+        autoconfigure: true
+
+    Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory: ~

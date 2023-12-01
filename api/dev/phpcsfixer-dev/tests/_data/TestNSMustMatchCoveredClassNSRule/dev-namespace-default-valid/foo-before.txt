@@ -1,0 +1,8 @@
+<?php
+namespace Dev\Name\Tests;
+
+/**
+ * @internal
+ * @coversDefaultClass \Dev\Name\App\FooBar
+ */
+class FooBarTest extends TestCase {}

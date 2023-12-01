@@ -1,0 +1,103 @@
+<?php
+
+namespace App\Tests;
+
+class FooTest
+{
+    /**
+     * This method breaks AAA "3 lines or less rule".
+     * Fix will be applied.
+     * > This test was made to avoid calculation issues with braces, which occurs when a class implements braces within its own code.
+     */
+    public function testTooManyCodeLines(): void
+    {
+        $this->markTestIncomplete('AAA must be implemented.');
+
+        $arrange = 1;
+        $this->assertEquals("/bookings/{$act}", $act);
+        $arrange++;
+        $act ??= 0;
+        $act = ++$arrange;
+        $this->assertNotNull($act);
+    }
+
+    /**
+     * This method follows AAA "3 lines or less rule".
+     * Nothing will be done.
+     * > This test was made to avoid calculation issues with braces, which occurs when a class implements braces within its own code.
+     */
+    public function test3LinesOrLess(): void
+    {
+        $arrange = 1;
+        $this->assertEquals("/bookings/{$act}", $act);
+        $arrange++;
+    }
+
+    /**
+     * This method breaks AAA "2 blank lines rule".
+     * Fix will be applied.
+     * > This test was made to avoid calculation issues with braces, which occurs when a class implements braces within its own code.
+     */
+    public function testTooManyBlankLines(): void
+    {
+        $this->markTestIncomplete('AAA must be implemented.');
+
+        $arrange = 1;
+
+        $this->assertEquals("/bookings/{$act}", $act);
+
+        $arrange++;
+
+        $act ??= 0;
+
+        $act = ++$arrange;
+
+        $this->assertNotNull($act);
+    }
+
+    /**
+     * This method follows AAA "2 blank lines rule".
+     * Nothing will be done.
+     * > This test was made to avoid calculation issues with braces, which occurs when a class implements braces within its own code.
+     */
+    public function testExactlyBlankLines(): void
+    {
+        $arrange = 1;
+
+        $arrange++;
+        $act ??= 0;
+        $this->assertEquals("/bookings/{$act}", $act);
+
+        $act = ++$arrange;
+        $this->assertNotNull($act);
+    }
+
+    /**
+     * This method follows AAA "comments rule".
+     * Nothing will be done.
+     * > This test was made to avoid calculation issues with braces, which occurs when a class implements braces within its own code.
+     */
+    public function testComments(): void
+    {
+        // Arrange
+        $arrange = 1;
+
+        $arrange++;
+        $arrange++;
+
+        $arrange++;
+
+        $arrange++;
+        $arrange++;
+
+        $this->assertEquals("/bookings/{$act}", $act);
+
+        // Act
+        $act ??= 0;
+
+        $act = ++$arrange;
+
+        // Assert
+        $this->assertNotNull($act);
+    }
+}

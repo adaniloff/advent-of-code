@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Tests;
+
+class FooTest
+{
+    /**
+     * This method follows AAA "2 blank lines rule".
+     * Nothing will be done.
+     * > This test was made to avoid calculation issues with braces, which occurs when a class implements a single method.
+     */
+    public function testSingleMethodInClass(): void
+    {
+        $arrange = 1;
+        $arrange++;
+
+        $act = ++$arrange;
+
+        $this->assertNotNull($act);
+        $this->assertEquals(3, $act);
+    }
+}

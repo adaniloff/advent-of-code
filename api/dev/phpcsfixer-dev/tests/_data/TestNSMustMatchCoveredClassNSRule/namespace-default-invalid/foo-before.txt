@@ -1,0 +1,8 @@
+<?php
+namespace App\Tests\Some\Random\Path;
+
+/**
+ * @internal
+ * @coversDefaultClass \App\Foo\Bar\FooBar
+ */
+class FooBarTest extends TestCase {}

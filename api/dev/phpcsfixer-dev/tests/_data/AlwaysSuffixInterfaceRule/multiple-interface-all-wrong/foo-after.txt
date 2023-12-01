@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Tests;
+
+/**
+ * @todo rename the file (FooBar -> FooBarInterface) before merging, then delete this comment.
+ */
+interface FooBarInterface extends FooBar
+{
+}
+
+/**
+ * @deprecated
+ * @see FooBarInterface
+ */
+interface FooBar extends Foo
+{
+}
+
+interface Foo
+{
+}

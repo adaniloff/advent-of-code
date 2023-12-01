@@ -1,0 +1,103 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.2",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "ext-pcntl": "*",
+        "ext-posix": "*",
+        "doctrine/collections": "^2.1",
+        "doctrine/doctrine-bundle": "^2.10",
+        "doctrine/doctrine-migrations-bundle": "^3.2",
+        "doctrine/orm": "^2.16",
+        "nyholm/psr7": "^1.8",
+        "psr/http-message": "<2.0",
+        "symfony/cache": "^6.0",
+        "symfony/console": "^6.0",
+        "symfony/dotenv": "^6.0",
+        "symfony/flex": "^2",
+        "symfony/framework-bundle": "^6.0",
+        "symfony/http-client": "^6.0",
+        "symfony/monolog-bundle": "^3.10",
+        "symfony/psr-http-message-bridge": "^2.3",
+        "symfony/runtime": "^6.0",
+        "symfony/security-bundle": "^6.0",
+        "symfony/translation": "^6.0",
+        "symfony/uid": "^6.0",
+        "symfony/validator": "^6.0",
+        "symfony/yaml": "^6.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "jetbrains/phpstorm-attributes": "^1.0",
+        "phpstan/phpstan": "^1.9",
+        "phpunit/phpunit": "^10.0",
+        "symfony/maker-bundle": "^1.51",
+        "symfony/phpunit-bridge": "^6.0",
+        "symfony/stopwatch": "^6.0",
+        "symfony/web-profiler-bundle": "^6.0",
+        "zenstruck/foundry": "^1.36"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Package\\AyruuKit\\App\\": "packages/ayruu-kit-pack/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/",
+            "Dev\\Ayruu\\App\\": "dev/ayruu-dev/src",
+            "Dev\\Foundry\\App\\": "dev/foundry-dev/src",
+            "Dev\\Foundry\\Tests\\": "dev/foundry-dev/tests",
+            "Dev\\PhpCsFixer\\App\\": "dev/phpcsfixer-dev/src"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-ctype": "*",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*",
+        "symfony/polyfill-php80": "*",
+        "symfony/polyfill-php81": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts",
+            "@composer-cc"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts",
+            "@composer-cc"
+        ],
+        "composer-cc": [
+            "composer dumpautoload",
+            "composer cc"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": "true",
+            "require": "6.4.*"
+        }
+    }
+}

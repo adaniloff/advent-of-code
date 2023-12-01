@@ -1,0 +1,26 @@
+<?php
+
+namespace Dev\PhpCsFixer\Tests\_data\TestNSMustMatchDirectoryRule\Some\Path;
+
+use App\Arithmetic\Add;
+
+class AddTest
+{
+    /**
+     * @covers ::getResult
+     * @covers ::add
+     */
+    protected function dummyTest(): void
+    {
+        $addition = Add(1, 1);
+
+        $this->assertEquals($addition->getResult(), 2);
+    }
+
+    public static function setUpBeforeClass(): void
+    {
+        self::markTestIncomplete('Tests namespace must follow their directory path.');
+
+        parent::setUpBeforeClass();
+    }
+}

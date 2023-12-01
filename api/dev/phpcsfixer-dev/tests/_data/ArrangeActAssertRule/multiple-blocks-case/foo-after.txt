@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Tests;
+
+class FooTest
+{
+    /**
+     * This method follows AAA "2 blank lines rule".
+     * Nothing will be done.
+     */
+    public function testMethodWith2BlankLinesExactly(): void
+    {
+        $arrange = 1;
+        $arrange++;
+
+        $act = ++$arrange;
+
+        $this->assertNotNull($act);
+        $this->assertEquals(3, $act);
+    }
+
+    /**
+     * This method does not follow AAA "2 blank lines rule".
+     * Fix will be applied.
+     */
+    public function testMethodWithMoreThan2BlankLines(): void
+    {
+        $this->markTestIncomplete('AAA must be implemented.');
+
+        $arrange = 1;
+        $arrange++;
+
+        $act = ++$arrange;
+
+        $this->assertNotNull($act);
+
+        $act++;
+        $this->assertEquals(4, $act);
+    }
+
+    /**
+     * This method does not follow AAA "2 blank lines rule".
+     * Fix will be applied.
+     */
+    public function testMethodWithLessThan2BlankLines(): void
+    {
+        $this->markTestIncomplete('AAA must be implemented.');
+
+        $arrange = 1;
+        $arrange++;
+        $act = ++$arrange;
+        $this->assertNotNull($act);
+
+        $act++;
+        $this->assertEquals(4, $act);
+    }
+
+    /**
+     * This method already contains the ->markAsIncomplete() function.
+     * Nothing will be done.
+     */
+    public function testAlreadyMarked(): void
+    {
+        $this->markTestIncomplete('AAA must be implemented.');
+
+        $arrange = 1;
+        $arrange++;
+
+        $act = ++$arrange;
+
+        $this->assertNotNull($act);
+
+        $act++;
+        $this->assertEquals(4, $act);
+    }
+}
