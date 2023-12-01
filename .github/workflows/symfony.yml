@@ -39,6 +39,8 @@ jobs:
       run: composer install -d api -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: api/bin/phpunit --configuration api/phpunit.xml.dist
+    - name: Copy coverage
+      run: php -r "copy('api/report/clover/report.xml', 'clover.xml');"
     - name: Make code coverage badge
       uses: timkrase/phpunit-coverage-badge@v1.2.1
       with:
@@ -52,3 +54,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
+    - name: Remove coverage copy
+      run: rm clover.xml
