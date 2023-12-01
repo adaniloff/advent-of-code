@@ -42,6 +42,9 @@ final class Calculator
         return (int) (self::first($input).''.self::last($input));
     }
 
+    /**
+     * @param string[] $inputs
+     */
     public static function computeAll(array $inputs): int
     {
         $sum = 0;

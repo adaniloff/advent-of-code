@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\Day1\Calibration\Calculator;
+use RuntimeException;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\{InputArgument, InputInterface, InputOption};
@@ -31,10 +32,19 @@ class Day1ComputeCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * @return string[]
+     */
     private function dataset(): array
     {
-        $file = fopen(__DIR__.'/../Datasets/Day1/day1.txt', 'r');
-        $content = fread($file, filesize(__DIR__.'/../Datasets/Day1/day1.txt'));
+        $filename = __DIR__.'/../Datasets/Day1/day1.txt';
+        $file = fopen($filename, 'r');
+        $size = filesize($filename);
+        if (!$file || !$size) {
+            throw new RuntimeException('Unable to open the file');
+        }
+
+        $content = fread($file, $size) ?: '';
 
         return explode("\n", $content);
     }

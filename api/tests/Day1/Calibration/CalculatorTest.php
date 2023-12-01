@@ -10,86 +10,223 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  *
- * @coversNothing
+ * @coversDefaultClass \App\Day1\Calibration\Calculator
  */
 final class CalculatorTest extends TestCase
 {
-    public function testFindFirstDigitOnlyDigit(): void
+    /**
+     * @dataProvider digitCases
+     *
+     * @param array{first: int} $expected
+     */
+    public function testFindFirstDigit(string $input, array $expected): void
     {
-        $this->markTestIncomplete('AAA must be implemented.');
-
-        $this->assertEquals(1, Calculator::first('1abc2'));
-        $this->assertEquals(3, Calculator::first('pqr3stu8vwx'));
-        $this->assertEquals(1, Calculator::first('a1b2c3d4e5f'));
-        $this->assertEquals(7, Calculator::first('treb7uchet'));
-        $this->assertEquals(0, Calculator::first('sans_value'));
+        $this->assertEquals($expected['first'], Calculator::first($input));
     }
 
-    public function testFindFirstDigitMixedValues(): void
+    /**
+     * @dataProvider alphaCases
+     *
+     * @param array{first: int} $expected
+     */
+    public function testFindFirstDigitWithStrConversion(string $input, array $expected): void
     {
-        $this->markTestIncomplete('AAA must be implemented.');
+        $this->assertEquals($expected['first'], Calculator::first($input));
+    }
 
-        $this->assertEquals(2, Calculator::first('two1nine'));
+    /**
+     * @dataProvider digitCases
+     *
+     * @param array{last: int} $expected
+     */
+    public function testFindLastDigit(string $input, array $expected): void
+    {
+        $this->assertEquals($expected['last'], Calculator::last($input));
+    }
+
+    /**
+     * @dataProvider alphaCases
+     *
+     * @param array{last: int} $expected
+     */
+    public function testFindLastDigitWithStrConversion(string $input, array $expected): void
+    {
+        $this->assertEquals($expected['last'], Calculator::last($input));
+    }
+
+    /**
+     * @dataProvider digitCases
+     *
+     * @param array{first: int, last: int} $expected
+     */
+    public function testComputeDigit(string $input, array $expected): void
+    {
+        $this->assertEquals($expected['first'].''.$expected['last'], Calculator::compute($input));
+    }
+
+    /**
+     * @dataProvider alphaCases
+     *
+     * @param array{first: int, last: int} $expected
+     */
+    public function testComputeDigitWithStrConversion(string $input, array $expected): void
+    {
+        $this->assertEquals($expected['first'].''.$expected['last'], Calculator::compute($input));
+    }
+
+    public function testStringOrderPrecedenceIsKept(): void
+    {
+        // Arrange
+        // Act
+        // Assert
         $this->assertEquals(8, Calculator::first('eightwothree'));
-        $this->assertEquals(1, Calculator::first('abcone2threexyz'));
-        $this->assertEquals(2, Calculator::first('xtwone3four'));
-        $this->assertEquals(4, Calculator::first('4nineeightseven2'));
-        $this->assertEquals(1, Calculator::first('zoneight234'));
-        $this->assertEquals(7, Calculator::first('7pqrstsixteen'));
-        $this->assertEquals(0, Calculator::first('sans_value'));
-    }
-
-    public function testFindLastDigitMixedValues(): void
-    {
-        $this->markTestIncomplete('AAA must be implemented.');
-
-        $this->assertEquals(9, Calculator::last('two1nine'));
         $this->assertEquals(3, Calculator::last('eightwothree'));
-        $this->assertEquals(3, Calculator::last('abcone2threexyz'));
-        $this->assertEquals(4, Calculator::last('xtwone3four'));
-        $this->assertEquals(2, Calculator::last('4nineeightseven2'));
-        $this->assertEquals(4, Calculator::last('zoneight234'));
-        $this->assertEquals(6, Calculator::last('7pqrstsixteen'));
-        $this->assertEquals(0, Calculator::last('sans_value'));
+        $this->assertEquals(3, Calculator::first('threeeightwo'));
+        $this->assertEquals(2, Calculator::last('threeeightwo'));
     }
 
-    public function testStringPrecedenceIsKept(): void
+    public function testComputeAll(): void
     {
-        $this->assertEquals(8, Calculator::first('eightwothree'));
+        // Arrange
+        $sum = 0;
+        $inputs = [];
+        array_map(function ($case) use (&$inputs, &$sum): void {
+            $values = array_values($case);
+            $inputs[] = $values[0];
+            $sum += (int) ($values[1]['first'].''.$values[1]['last']);
+        }, self::digitCases());
+
+        // Act
+        $result = Calculator::computeAll($inputs);
+
+        // Assert
+        $this->assertEquals($sum, $result);
     }
 
-    public function testComputeMixedValues(): void
+    public function testComputeAllWithStrConversion(): void
     {
-        $this->markTestIncomplete('AAA must be implemented.');
+        // Arrange
+        $sum = 0;
+        $inputs = [];
+        array_map(function ($case) use (&$inputs, &$sum): void {
+            $values = array_values($case);
+            $inputs[] = $values[0];
+            $sum += (int) ($values[1]['first'].''.$values[1]['last']);
+        }, self::alphaCases());
 
-        $this->assertEquals(29, Calculator::compute('two1nine'));
-        $this->assertEquals(83, Calculator::compute('eightwothree'));
-        $this->assertEquals(13, Calculator::compute('abcone2threexyz'));
-        $this->assertEquals(24, Calculator::compute('xtwone3four'));
-        $this->assertEquals(42, Calculator::compute('4nineeightseven2'));
-        $this->assertEquals(14, Calculator::compute('zoneight234'));
-        $this->assertEquals(76, Calculator::compute('7pqrstsixteen'));
-        $this->assertEquals(0, Calculator::compute('sans_value'));
+        // Act
+        $result = Calculator::computeAll($inputs);
+
+        // Assert
+        $this->assertEquals($sum, $result);
     }
 
-    public function testComputeOnlyDigit(): void
+    /**
+     * @return array<string, array{input: string, expected: array{first: int, last: int}}>
+     */
+    public static function digitCases(): array
     {
-        $this->markTestIncomplete('AAA must be implemented.');
-
-        $this->assertEquals(12, Calculator::compute('1abc2'));
-        $this->assertEquals(38, Calculator::compute('pqr3stu8vwx'));
-        $this->assertEquals(15, Calculator::compute('a1b2c3d4e5f'));
-        $this->assertEquals(77, Calculator::compute('treb7uchet'));
-        $this->assertEquals(0, Calculator::compute('sans_value'));
+        return [
+            '1abc2' => [
+                'input' => '1abc2',
+                'expected' => [
+                    'first' => 1,
+                    'last' => 2,
+                ],
+            ],
+            'pqr3stu8vwx' => [
+                'input' => 'pqr3stu8vwx',
+                'expected' => [
+                    'first' => 3,
+                    'last' => 8,
+                ],
+            ],
+            'a1b2c3d4e5f' => [
+                'input' => 'a1b2c3d4e5f',
+                'expected' => [
+                    'first' => 1,
+                    'last' => 5,
+                ],
+            ],
+            'treb7uchet' => [
+                'input' => 'treb7uchet',
+                'expected' => [
+                    'first' => 7,
+                    'last' => 7,
+                ],
+            ],
+            'sans_value' => [
+                'input' => 'sans_value',
+                'expected' => [
+                    'first' => 0,
+                    'last' => 0,
+                ],
+            ],
+        ];
     }
 
-    public function testComputeAllOnlyDigit(): void
+    /**
+     * @return array<string, array{input: string, expected: array{first: int, last: int}}>
+     */
+    public static function alphaCases(): array
     {
-        $this->assertEquals(12 + 38 + 15 + 77, Calculator::computeAll(['1abc2', 'pqr3stu8vwx', 'a1b2c3d4e5f', 'treb7uchet', 'sans_value']));
-    }
-
-    public function testComputeAllMixedValues(): void
-    {
-        $this->assertEquals(29 + 83 + 13 + 24 + 42 + 14 + 76, Calculator::computeAll(['two1nine', 'eightwothree', 'abcone2threexyz', 'xtwone3four', '4nineeightseven2', 'zoneight234', '7pqrstsixteen', 'sans_value']));
+        return [
+            'two1nine' => [
+                'input' => 'two1nine',
+                'expected' => [
+                    'first' => 2,
+                    'last' => 9,
+                ],
+            ],
+            'eightwothree' => [
+                'input' => 'eightwothree',
+                'expected' => [
+                    'first' => 8,
+                    'last' => 3,
+                ],
+            ],
+            'abcone2threexyz' => [
+                'input' => 'abcone2threexyz',
+                'expected' => [
+                    'first' => 1,
+                    'last' => 3,
+                ],
+            ],
+            'xtwone3four' => [
+                'input' => 'xtwone3four',
+                'expected' => [
+                    'first' => 2,
+                    'last' => 4,
+                ],
+            ],
+            '4nineeightseven2' => [
+                'input' => '4nineeightseven2',
+                'expected' => [
+                    'first' => 4,
+                    'last' => 2,
+                ],
+            ],
+            'zoneight234' => [
+                'input' => 'zoneight234',
+                'expected' => [
+                    'first' => 1,
+                    'last' => 4,
+                ],
+            ],
+            '7pqrstsixteen' => [
+                'input' => '7pqrstsixteen',
+                'expected' => [
+                    'first' => 7,
+                    'last' => 6,
+                ],
+            ],
+            'sans_value' => [
+                'input' => 'sans_value',
+                'expected' => [
+                    'first' => 0,
+                    'last' => 0,
+                ],
+            ],
+        ];
     }
 }
