@@ -26,12 +26,6 @@ RUN apk add --no-cache \
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash
 RUN apk add symfony-cli
 
-# setup amqp on php>=8
-RUN apk add --no-cache rabbitmq-c-dev && mkdir -p /usr/src/php/ext/amqp && \
-    curl -fsSL https://pecl.php.net/get/amqp | tar xvz -C "/usr/src/php/ext/amqp" --strip 1 && \
-    docker-php-ext-install amqp;
-
-
 # install gnu-libiconv and set LD_PRELOAD env to make iconv work fully on Alpine image.
 # see https://github.com/docker-library/php/issues/240#issuecomment-763112749
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so

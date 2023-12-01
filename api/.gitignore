@@ -2,14 +2,10 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
-!/var/search/cache/.gitkeep
-!/var/debug/cache/.gitkeep
-!/dev/foundry-dev/src/Factory/.gitkeep
-!/migrations/.gitkeep
 /vendor/
+/report/
 ###< symfony/framework-bundle ###
 
 ###> friendsofphp/php-cs-fixer ###
@@ -23,23 +19,6 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
-###> symfony/phpunit-bridge ###
-.phpunit.result.cache
-/phpunit.xml
-###< symfony/phpunit-bridge ###
-
-###> ayruu ###
-report
-###< ayruu ###
-
-###> qossmic/deptrac-shim ###
-/.deptrac.cache
-###< qossmic/deptrac-shim ###
-
 ###> phpstan/phpstan ###
 phpstan.neon
 ###< phpstan/phpstan ###
-
-###> lexik/jwt-authentication-bundle ###
-/config/jwt/*.pem
-###< lexik/jwt-authentication-bundle ###
