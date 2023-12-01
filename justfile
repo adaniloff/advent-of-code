@@ -65,14 +65,6 @@ app-cc +options='':
   just comp cc
 alias cc := app-cc
 
-# > (app): Run the migrations
-app-dbz +options='':
-  #!/usr/bin/env bash
-  env=`just env={{env}} _getenv`
-  just env=$env sf-c doctrine:database:create --if-not-exists
-  just env=$env sf-c doctrine:migration:migrate --allow-no-migration --no-interaction {{options}}
-alias dbz := app-dbz
-
 # > (app): Run phpstan
 app-stan +options='':
   @{{docker}} vendor/bin/phpstan analyse --memory-limit 256M {{options}}
