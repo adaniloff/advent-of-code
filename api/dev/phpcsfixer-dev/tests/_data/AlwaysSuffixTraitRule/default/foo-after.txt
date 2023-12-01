@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Tests;
+
+/**
+ * @todo rename the file (Foo -> FooTrait) before merging, then delete this comment.
+ */
+trait FooTrait
+{
+    use Foo;
+}
+
+/**
+ * @deprecated
+ * @see FooTrait
+ */
+trait Foo
+{
+}

@@ -1,0 +1,16 @@
+<?php
+
+namespace Dev\PhpCsFixer\Tests\_data\TestNSMustMatchDirectoryRule\Some\Path;
+
+class FooTest
+{
+    public static function setUpBeforeClass(): void
+    {
+        self::markTestIncomplete('Tests namespace must follow their directory path.');
+    }
+
+    protected function dummyTest(): void
+    {
+        $this->assertEquals(1, 1);
+    }
+}

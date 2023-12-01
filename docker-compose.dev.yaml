@@ -1,0 +1,9 @@
+version: "3.4"
+
+# Development team environment override
+services:
+  aoc_app:
+    volumes:
+      - ./api/docker/php/conf.d/php.dev.ini:/usr/local/etc/php/conf.d/app.ini
+    environment:
+      APP_ENV: dev

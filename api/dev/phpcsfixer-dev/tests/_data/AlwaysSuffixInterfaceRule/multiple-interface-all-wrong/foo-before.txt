@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Tests;
+
+interface FooBar extends Foo
+{
+}
+
+interface Foo
+{
+}

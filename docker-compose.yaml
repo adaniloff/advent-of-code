@@ -1,0 +1,23 @@
+version: "3.4"
+
+services:
+  aoc_app:
+    pid: host
+    container_name: aoc_app
+    build:
+      context: ./api
+      target: php
+    restart: unless-stopped
+    volumes:
+      - ./api:/srv/api:rw,cached
+      - ./justfile:/srv/api/justfile:ro,cached
+      - php_socket:/var/run/php
+      - ~/.composer:/root/.composer
+    environment:
+      JUST.MAKE.DOCKER: '' # enable just.make to work in docker containers
+      TRUSTED_PROXIES: ${TRUSTED_PROXIES:-127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16}
+      TRUSTED_HOSTS: ^${SERVER_NAME:-localhost}$$
+      PHPFPM_ERROR_LOG: ${PHPFPM_ERROR_LOG:-/var/log}
+
+volumes:
+  php_socket:

@@ -1,0 +1,7 @@
+<?php
+
+namespace Dev\PhpCsFixer\Tests\_data\TestNSMustMatchDirectoryRule\default;
+
+class FooTest
+{
+}

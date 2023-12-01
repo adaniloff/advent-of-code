@@ -1,0 +1,11 @@
+<?php
+
+namespace Dev\PhpCsFixer\Tests\_data\TestNSMustMatchDirectoryRule\Some\Path;
+
+class FooTest
+{
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+    }
+}

@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Tests;
+
+trait FooBar
+{
+    use Foo;
+}
+
+trait Foo
+{
+}

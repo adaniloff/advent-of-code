@@ -1,0 +1,16 @@
+version: "3.4"
+
+# Debug environment override
+services:
+  aoc_app:
+    build:
+      context: ./api
+      target: php_debug
+    environment:
+      # This should correspond to the server declared in PHPStorm `Preferences | Languages & Frameworks | PHP | Servers`
+      # Then PHPStorm will use the corresponding path mappings
+      PHP_IDE_CONFIG: serverName=symfony
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ./api/docker/php/conf.d/xdebug.dev.ini:/usr/local/etc/php/conf.d/99-xdebug.ini

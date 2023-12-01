@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Tests;
+
+class FooTest
+{
+    /**
+     * This method follows AAA "3 lines or less rule".
+     * Nothing will be done.
+     */
+    public function testMethodWith3LinesOrLess(): void
+    {
+        $arrange = 1;
+        $act = ++$arrange;
+        $this->assertEquals(2, $act);
+    }
+
+    /**
+     * This method does not follow AAA "3 lines or less rule".
+     * Fix will be applied.
+     */
+    public function testMethodWith4LinesOrMore(): void
+    {
+        $arrange = 1;
+        $act = ++$arrange;
+        $act = ++$arrange;
+        $this->assertEquals(2, $act);
+    }
+
+    /**
+     * This method already contains the ->markAsIncomplete() function.
+     * Nothing will be done.
+     */
+    public function testAlreadyMarked(): void
+    {
+        $this->markTestIncomplete('AAA must be implemented.');
+
+        $arrange = 1;
+        $act = ++$arrange;
+        $act = ++$arrange;
+        $this->assertEquals(2, $act);
+    }
+}

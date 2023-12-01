@@ -1,0 +1,150 @@
+<?php
+
+namespace App\Tests;
+
+class FooTest
+{
+    /**
+     * This method follows AAA "3 comments rule".
+     * Nothing will be done.
+     */
+    public function testMethodWith3Comments(): void
+    {
+        // Arrange
+        $arrange = 1;
+        $arrange++;
+
+        // Act
+        $act = ++$arrange
+         && ++$arrange;
+        $act++;
+
+        // Assert
+        $this->assertNotNull($act);
+        $this->assertEquals(4, $act);
+    }
+
+    /**
+     * This method follows AAA "2 comments rule".
+     * the fix will apply.
+     */
+    public function testMethodWith2Comments(): void
+    {
+        $arrange = 1;
+        $arrange++;
+
+        //Act
+        $act = ++$arrange
+         && ++$arrange;
+        $act++;
+
+        //Assert
+        $this->assertNotNull($act);
+        $this->assertEquals(4, $act);
+    }
+
+    /**
+     * This method follows AAA "3 comments rule with wrong typo".
+     * correct typo.
+     */
+    public function testMethodWith3CommentsWrongTypo(): void
+    {
+        //arranGE
+        $arrange = 1;
+        $arrange++;
+
+        // act
+        $act = ++$arrange
+         && ++$arrange;
+        $act++;
+
+        //ASSert
+        $this->assertNotNull($act);
+        $this->assertEquals(4, $act);
+    }
+
+    /**
+     * This method follows AAA "3 comments rule".
+     * Nothing will be done.
+     */
+    public function testMethodWith3CommentsUnordered(): void
+    {
+        // Assert
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Hello world !');
+
+        // Arrange
+        $arrange = 1;
+        $arrange++;
+
+        // Act
+        $act = ++$arrange
+         && ++$arrange;
+    }
+
+    /**
+     * This method break AAA "3 comments rule":
+     * -> Too many //Assert
+     * Fix will be applied.
+     */
+    public function testMethodWith4Comments(): void
+    {
+        // Assert
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Hello world !');
+
+        // Arrange
+        $arrange = 1;
+        $arrange++;
+
+        // Act
+        $act = ++$arrange
+         && ++$arrange;
+
+        // Assert
+        $this->assertNotNull($act);
+        $this->assertEquals(3, $act);
+    }
+
+    /**
+     * This method break AAA "3 comments rule":
+     * -> //Act is missing
+     * Fix will be applied.
+     */
+    public function testMethodWith2Comments(): void
+    {
+        // Arrange
+        $arrange = 1;
+        $arrange++;
+
+        $act = ++$arrange
+         && ++$arrange;
+
+        $act++;
+
+        // Assert
+        $this->assertNotNull($act);
+        $this->assertEquals(4, $act);
+    }
+
+    /**
+     * This method already contains the ->markAsIncomplete() function.
+     * Nothing will be done.
+     */
+    public function testAlreadyMarked(): void
+    {
+        $this->markTestIncomplete('AAA must be implemented.');
+
+        // Arrange
+        $arrange = 1;
+        $arrange++;
+
+        // Act
+        $act = ++$arrange;
+        $act++;
+
+        // Assert
+        $this->assertNotNull($act);
+        $this->assertEquals(4, $act);
+    }
+}
