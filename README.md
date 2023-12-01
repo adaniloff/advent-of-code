@@ -52,3 +52,10 @@ The main project is under the folder **api**, which divide the code under **3 su
 - **dev** *> which contains development tools* ([read the doc](./api/dev/README.md))
 - **packages** *> which contains internal shareable tools (sdk-like but easier to maintain)* ([read the doc](./api/packages/README.md)) (**disclaimer**: *it is important to note that this directory will probably be removed later on, the code will be placed under **src**)*
 - **src** *> which contains the project code*
+
+## Challenges
+
+#### Day 1
+
+The file containing the data used by the project is located in `api/src/Datasets/Day1/day1.txt`.
+Run the command `just sfc app:day1:compute` to retrieve the result, according to this dataset.
