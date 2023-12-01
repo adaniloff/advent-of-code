@@ -9,5 +9,3 @@ services:
         public: true
         autowire: true
         autoconfigure: true
-
-    Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory: ~

@@ -1,8 +1,5 @@
 version: "3.4"
 
-x-http-port: &http-port ${CADDY_HTTP_PORT:-80}
-x-https-port: &https-port ${CADDY_HTTPS_PORT:-443}
-
 services:
   aoc_app:
     pid: host
@@ -10,8 +7,6 @@ services:
     build:
       context: ./api
       target: php
-    depends_on:
-      - aoc_database
     restart: unless-stopped
     volumes:
       - ./api:/srv/api:rw,cached
@@ -20,66 +15,9 @@ services:
       - ~/.composer:/root/.composer
     environment:
       JUST.MAKE.DOCKER: '' # enable just.make to work in docker containers
-      DATABASE_URL: mysql://${MYSQL_USER:-ayruu}:${MYSQL_PASSWORD:-ayruu}@database:3306/${MYSQL_DB:-booker}?serverVersion=${MYSQL_VERSION:-8.0.27}
       TRUSTED_PROXIES: ${TRUSTED_PROXIES:-127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16}
-      TRUSTED_HOSTS: ^${SERVER_NAME:-localhost}|caddy$$
+      TRUSTED_HOSTS: ^${SERVER_NAME:-localhost}$$
       PHPFPM_ERROR_LOG: ${PHPFPM_ERROR_LOG:-/var/log}
-    networks:
-      - aoc
-
-  aoc_caddy:
-    container_name: aoc_caddy
-    image: caddy:2.7
-    depends_on:
-      - aoc_app
-    environment:
-      DEBUG: ${CADDY_DEBUG:-}
-      SERVER_NAME: ${SERVER_NAME:-localhost}, caddy:80
-    restart: unless-stopped
-    volumes:
-      - ./api/public:/srv/api/public:ro,cached
-      - ./api/docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro,cached
-      - php_socket:/var/run/php
-      - caddy_data:/data
-      - caddy_config:/config
-    ports:
-      # HTTP
-      - target: 80
-        published: *http-port
-        protocol: tcp
-      # HTTPS
-      - target: 443
-        published: *https-port
-        protocol: tcp
-      # HTTP/3
-      - target: 443
-        published: *https-port
-        protocol: udp
-    networks:
-      - aoc
-
-  aoc_database:
-    container_name: aoc_database
-    image: mysql:8.0.27
-    restart: unless-stopped
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
-    volumes:
-      - ./api/docker/mysql/multiple_databases.sql:/docker-entrypoint-initdb.d/multiple_databases.sql
-      - db_data:/var/lib/mysql:rw
-    ports:
-      - target: 3306
-        published: 4306
-        protocol: tcp
-    networks:
-      - aoc
 
 volumes:
   php_socket:
-  db_data:
-  caddy_data:
-  caddy_config:
-
-networks:
-  aoc:
-

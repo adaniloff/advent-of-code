@@ -63,7 +63,6 @@ comp-up +dependency='':
 app-cc +options='':
   just sf-c cache:clear
   just comp cc
-  just comp composer-dump-env-prod-only
 alias cc := app-cc
 
 # > (app): Run the migrations

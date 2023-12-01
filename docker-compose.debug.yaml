@@ -1,7 +1,5 @@
 version: "3.4"
 
-x-target-path: &target-path /home/debug-cache
-
 # Debug environment override
 services:
   aoc_app:
@@ -12,11 +10,7 @@ services:
       # This should correspond to the server declared in PHPStorm `Preferences | Languages & Frameworks | PHP | Servers`
       # Then PHPStorm will use the corresponding path mappings
       PHP_IDE_CONFIG: serverName=symfony
-      AYRUU_CACHE_DIR: *target-path
     extra_hosts:
       - host.docker.internal:host-gateway
     volumes:
       - ./api/docker/php/conf.d/xdebug.dev.ini:/usr/local/etc/php/conf.d/99-xdebug.ini
-      - type: bind
-        source: ./api/var/debug/cache
-        target: *target-path

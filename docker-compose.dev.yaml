@@ -5,14 +5,5 @@ services:
   aoc_app:
     volumes:
       - ./api/docker/php/conf.d/php.dev.ini:/usr/local/etc/php/conf.d/app.ini
-      #- ./.git:/srv/api/.git:rw,cached       # grumphp requirement
-      #- ./.github:/srv/api/.github:rw,cached # grumphp requirement
     environment:
       APP_ENV: dev
-
-  aoc_caddy:
-    volumes:
-      - ./api/docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./api/public:/srv/api/public:ro
-    environment:
-      DEBUG: debug

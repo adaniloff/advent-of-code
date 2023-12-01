@@ -1,5 +1,0 @@
-CREATE DATABASE IF NOT EXISTS `booker`;
-CREATE DATABASE IF NOT EXISTS `booker_test`;
-
-CREATE USER 'ayruu'@'%' IDENTIFIED BY 'ayruu';
-GRANT ALL PRIVILEGES ON *.* TO 'ayruu'@'%';

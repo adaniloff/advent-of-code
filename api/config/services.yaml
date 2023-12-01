@@ -1,6 +1,3 @@
-imports:
-    - { resource: ../packages/ayruu-kit-pack/config/services.yaml }
-
 services:
     _defaults:
         autowire: true

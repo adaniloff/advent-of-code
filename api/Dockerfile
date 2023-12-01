@@ -78,8 +78,8 @@ COPY docker/php/php-fpm.d/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
-RUN git config --global user.email "dev@ayruu.com"
-RUN git config --global user.name "Ayruu"
+RUN git config --global user.email "adaniloff.dev@gmail.com"
+RUN git config --global user.name "Aleksandr Daniloff"
 
 # security-checker
 RUN wget "https://github.com/fabpot/local-php-security-checker/releases/download/v1.2.0/local-php-security-checker_1.2.0_linux_amd64" \

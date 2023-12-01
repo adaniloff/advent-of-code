@@ -9,25 +9,11 @@
         "ext-iconv": "*",
         "ext-pcntl": "*",
         "ext-posix": "*",
-        "doctrine/collections": "^2.1",
-        "doctrine/doctrine-bundle": "^2.10",
-        "doctrine/doctrine-migrations-bundle": "^3.2",
-        "doctrine/orm": "^2.16",
-        "nyholm/psr7": "^1.8",
-        "psr/http-message": "<2.0",
-        "symfony/cache": "^6.0",
         "symfony/console": "^6.0",
         "symfony/dotenv": "^6.0",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "^6.0",
-        "symfony/http-client": "^6.0",
-        "symfony/monolog-bundle": "^3.10",
-        "symfony/psr-http-message-bridge": "^2.3",
         "symfony/runtime": "^6.0",
-        "symfony/security-bundle": "^6.0",
-        "symfony/translation": "^6.0",
-        "symfony/uid": "^6.0",
-        "symfony/validator": "^6.0",
         "symfony/yaml": "^6.0"
     },
     "require-dev": {
@@ -37,9 +23,7 @@
         "phpunit/phpunit": "^10.0",
         "symfony/maker-bundle": "^1.51",
         "symfony/phpunit-bridge": "^6.0",
-        "symfony/stopwatch": "^6.0",
-        "symfony/web-profiler-bundle": "^6.0",
-        "zenstruck/foundry": "^1.36"
+        "symfony/stopwatch": "^6.0"
     },
     "config": {
         "allow-plugins": {
@@ -51,16 +35,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "Package\\AyruuKit\\App\\": "packages/ayruu-kit-pack/src"
+            "App\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "App\\Tests\\": "tests/",
-            "Dev\\Ayruu\\App\\": "dev/ayruu-dev/src",
-            "Dev\\Foundry\\App\\": "dev/foundry-dev/src",
-            "Dev\\Foundry\\Tests\\": "dev/foundry-dev/tests",
             "Dev\\PhpCsFixer\\App\\": "dev/phpcsfixer-dev/src"
         }
     },
