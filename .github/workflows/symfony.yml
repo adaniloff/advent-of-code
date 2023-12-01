@@ -38,4 +38,4 @@ jobs:
     - name: Install Dependencies
       run: composer install -d api -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      run: api/bin/phpunit
+      run: api/bin/phpunit --configuration api/phpunit.xml.dist
