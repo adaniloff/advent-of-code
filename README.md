@@ -1,4 +1,4 @@
-# Booker engine
+# Advent of code 2023
 
 ## Installation
 
@@ -50,6 +50,5 @@ The setup is *slightly* more complicated than above:
 
 The main project is under the folder **api**, which divide the code under **3 subdirectories**:
 - **dev** *> which contains development tools* ([read the doc](./api/dev/README.md))
-- **legacy** *> which contains (mainly) generated code that allow V2 communications thanks to JanePHP*
 - **packages** *> which contains internal shareable tools (sdk-like but easier to maintain)* ([read the doc](./api/packages/README.md)) (**disclaimer**: *it is important to note that this directory will probably be removed later on, the code will be placed under **src**)*
 - **src** *> which contains the project code*
