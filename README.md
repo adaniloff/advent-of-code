@@ -61,3 +61,10 @@ The main project is under the folder **api**, which divide the code under **2 su
 The sources are located in the directory `api/src/Year2023/Day1`.
 Run the command `just sfc aoc:2023:day1` or `docker-compose exec aoc_app bin/console aoc:2023:day1` to retrieve the result, 
 according to this dataset.
+
+#### Day 2
+
+The sources are located in the directory `api/src/Year2023/Day2`.
+Run the command `just sfc aoc:2023:day2` or `docker-compose exec aoc_app bin/console aoc:2023:day2` to retrieve the 
+result, 
+according to this dataset.

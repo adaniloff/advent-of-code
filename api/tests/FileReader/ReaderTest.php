@@ -6,7 +6,6 @@ namespace App\Tests\FileReader;
 
 use App\FileReader\Reader;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 
 /**
  * @internal
@@ -23,7 +22,7 @@ final class ReaderTest extends TestCase
 
     public function testContent(): void
     {
-        $expected = <<<TEXT
+        $expected = <<<'TEXT'
 hello world
 this is a simple test ;)
 TEXT;
