@@ -68,3 +68,10 @@ The sources are located in the directory `api/src/Year2023/Day2`.
 Run the command `just sfc aoc:2023:day2` or `docker-compose exec aoc_app bin/console aoc:2023:day2` to retrieve the 
 result, 
 according to this dataset.
+
+#### Day 3
+
+The sources are located in the directory `api/src/Year2023/Day3`.
+Run the command `just sfc aoc:2023:day3` or `docker-compose exec aoc_app bin/console aoc:2023:day3` to retrieve the 
+result, 
+according to this dataset.
