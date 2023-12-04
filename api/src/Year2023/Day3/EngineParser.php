@@ -150,6 +150,8 @@ final class EngineParser
 
     /**
      * @param array<string, int|float> $existingParts
+     *
+     * @todo: reduce cyclomatic complexity
      */
     private function buildParts(array &$existingParts): void
     {
